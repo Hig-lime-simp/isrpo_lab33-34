@@ -1,0 +1,49 @@
+@baseUrl = http://localhost:5128
+
+### Все заметки
+GET {{baseUrl}}/api/notes
+
+### Заметки категории "учёба" (id=2)
+GET {{baseUrl}}/api/notes?categoryId=2
+
+### Поиск по слову "LINQ"
+GET {{baseUrl}}/api/notes?search=LINQ
+
+### Только закреплённые, высокий приоритет
+GET {{baseUrl}}/api/notes?isPinned=true&minPriority=4
+
+### Архивные заметки
+GET {{baseUrl}}/api/notes?archived=true
+
+### Все категории с количеством заметок
+GET {{baseUrl}}/api/categories
+
+### Категория "учёба" со списком заметок
+GET {{baseUrl}}/api/categories/2/notes
+
+### Создать заметку
+POST {{baseUrl}}/api/notes
+Content-Type: application/json
+
+{
+  "title": "Заметка из REST Client",
+  "content": "Тестируем полноценный CRUD с паттерном Repository",
+  "priority": 4,
+  "categoryId": 2
+}
+
+### Создать категорию
+POST {{baseUrl}}/api/categories
+Content-Type: application/json
+
+{
+  "name": "Хобби",
+  "description": "Заметки о хобби и увлечениях",
+  "color": "#9b59b6"
+}
+
+### Закрепить заметку
+PATCH {{baseUrl}}/api/notes/3/pin
+
+### Архивировать заметку
+PATCH {{baseUrl}}/api/notes/3/archive
